@@ -1,169 +1,185 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>xcognet.com - Premium Domain For Sale</title>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;600&display=swap" rel="stylesheet">
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            height: 100vh;
-            background: linear-gradient(135deg, #000000, #120032);
-            color: #8a2be2;
-            font-family: 'Exo 2', sans-serif;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            overflow: hidden;
-            position: relative;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>xcognet.com</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-        .background-glow {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle at center, rgba(138, 43, 226, 0.15), transparent 70%);
-            animation: pulse 10s infinite alternate;
-            pointer-events: none;
-        }
+    body {
+      background: #0a0b1a;
+      color: #e0e0ff;
+      font-family: 'Inter', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      position: relative;
+    }
 
-        @keyframes pulse {
-            0% { opacity: 0.4; transform: scale(1); }
-            100% { opacity: 0.7; transform: scale(1.05); }
-        }
+    body::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: 
+        radial-gradient(circle at 30% 40%, rgba(40, 20, 80, 0.3) 0%, transparent 50%),
+        radial-gradient(circle at 70% 60%, rgba(20, 30, 70, 0.4) 0%, transparent 60%);
+      z-index: -1;
+    }
 
-        @keyframes neon-glow {
-            0% { text-shadow: 0 0 10px #8a2be2, 0 0 20px #8a2be2, 0 0 30px #8a2be2; }
-            100% { text-shadow: 0 0 20px #8a2be2, 0 0 40px #8a2be2, 0 0 60px #8a2be2, 0 0 80px #8a2be2; }
-        }
+    .container {
+      text-align: center;
+      max-width: 860px;
+      padding: 2.8rem;
+    }
 
-        h1 {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 6.5rem;
-            font-weight: 900;
-            margin: 0;
-            letter-spacing: 0.25em;
-            animation: neon-glow 2.5s infinite alternate;
-            color: #d8bfd8;
-        }
+    h1 {
+      font-family: 'Orbitron', monospace;
+      font-size: 3.8rem;
+      background: linear-gradient(95deg, #7a3eff, #00dbff, #b060ff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      margin-bottom: 1.3rem;
+      letter-spacing: 1.2px;
+      text-shadow: 0 0 20px rgba(122, 62, 255, 0.4);
+      animation: pulse-glow 5s infinite alternate;
+    }
 
-        .subtitle {
-            font-size: 2.8rem;
-            margin: 20px 0;
-            opacity: 0.95;
-            font-weight: 300;
-        }
+    @keyframes pulse-glow {
+      0% { opacity: 0.88; text-shadow: 0 0 18px rgba(0, 219, 255, 0.5); }
+      100% { opacity: 1; text-shadow: 0 0 32px rgba(176, 96, 255, 0.85); }
+    }
 
-        .breakdown {
-            font-size: 2.2rem;
-            margin: 50px 0;
-            line-height: 1.8;
-        }
+    .subtitle {
+      font-size: 1.18rem;
+      color: #c0c0f5;
+      margin-bottom: 2.2rem;
+      line-height: 1.65;
+      font-weight: 300;
+    }
 
-        .breakdown span {
-            font-size: 1.6rem;
-            opacity: 0.85;
-            display: block;
-            margin-top: 15px;
-        }
+    .interpretation {
+      background: rgba(18, 18, 42, 0.68);
+      border: 1px solid rgba(110, 110, 200, 0.2);
+      border-radius: 16px;
+      padding: 1.5rem;
+      margin: 1.8rem 0 2.2rem;
+      font-size: 1rem;
+      line-height: 1.7;
+      backdrop-filter: blur(4px);
+    }
 
-        .infinity {
-            font-size: 5rem;
-            margin: 40px 0;
-            animation: neon-glow 4s infinite alternate;
-            color: #9370db;
-        }
+    .interpretation strong {
+      color: #00dbff;
+    }
 
-        .uses {
-            max-width: 900px;
-            margin: 50px auto;
-            font-size: 1.4rem;
-            line-height: 1.9;
-        }
+    ul {
+      text-align: left;
+      margin: 1.6rem auto;
+      max-width: 620px;
+      color: #d0d0ff;
+      line-height: 1.85;
+      list-style: none;
+      padding-left: 0;
+    }
 
-        .uses ul {
-            list-style: none;
-            padding: 0;
-        }
+    ul li {
+      position: relative;
+      padding-left: 1.8rem;
+    }
 
-        .uses li {
-            margin: 18px 0;
-            padding: 15px;
-            background: rgba(138, 43, 226, 0.08);
-            border: 1px solid rgba(138, 43, 226, 0.4);
-            border-radius: 12px;
-        }
+    ul li::before {
+      content: "●";
+      color: #7a3eff;
+      position: absolute;
+      left: 0;
+      top: 0.25rem;
+      font-size: 0.9rem;
+      animation: float 4s infinite ease-in-out;
+    }
 
-        .price {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 3.2rem;
-            margin: 60px 0 20px;
-            animation: neon-glow 2s infinite alternate;
-            color: #ba55d3;
-        }
+    ul li:nth-child(2)::before { animation-delay: 0.3s; }
+    ul li:nth-child(3)::before { animation-delay: 0.6s; }
+    ul li:nth-child(4)::before { animation-delay: 0.9s; }
+    ul li:nth-child(5)::before { animation-delay: 1.2s; }
+    ul li:nth-child(6)::before { animation-delay: 1.5s; }
 
-        .contact {
-            font-size: 1.9rem;
-            margin: 40px 0;
-        }
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-3px); }
+    }
 
-        .email {
-            color: #da70d6;
-            text-decoration: none;
-            font-weight: bold;
-        }
+    .price {
+      font-size: 1.35rem;
+      margin: 2rem 0;
+      color: #00dbff;
+      font-weight: 600;
+    }
 
-        footer {
-            position: absolute;
-            bottom: 25px;
-            font-size: 1.1rem;
-            opacity: 0.7;
-        }
-    </style>
+    .contact {
+      margin-top: 2rem;
+      font-size: 1.05rem;
+    }
+
+    .contact a {
+      color: #7a3eff;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .contact a:hover {
+      text-decoration: underline;
+    }
+
+    footer {
+      margin-top: 3rem;
+      font-size: 0.86rem;
+      color: #707095;
+      font-style: italic;
+    }
+
+    @media (max-width: 600px) {
+      h1 { font-size: 2.6rem; }
+      .container { padding: 1.8rem; }
+      ul { font-size: 0.95rem; }
+    }
+  </style>
 </head>
 <body>
-    <div class="background-glow"></div>
-
+  <div class="container">
     <h1>XCOGNET.COM</h1>
-    <div class="subtitle">Infinite Mysterious Cognitive Network</div>
+    <p class="subtitle">A 7-character key to the cognitive frontier — where X unlocks the infinite potential of Cognet.</p>
 
-    <div class="breakdown">
-        X + COGNET<br>
-        <span>
-            X → Infinite Mystery • Boundless Possibilities • Next Frontier<br>
-            COGNET → Cognition + Network → Cognitive Neural Systems • Brain-Inspired AI
-        </span>
+    <div class="interpretation">
+      <strong>X + COGNET</strong> fuses the unknown variable with a legacy-rich cognitive architecture.<br>
+      Inspired by MIT’s symbolic-connectionist COGNET and EU’s multimodal Cognet Project — now reborn for the age of autonomous AGI.
     </div>
 
-    <div class="infinity">∞</div>
+    <p>Ideal for:</p>
+    <ul>
+      <li>Artificial General Intelligence (AGI) research labs & platforms</li>
+      <li>Neuro-symbolic AI systems integrating reasoning + learning</li>
+      <li>Decentralized cognitive networks (e.g., agent-based knowledge graphs)</li>
+      <li>Autonomous AI agents operating on blockchain (Bitcoin Runes, AI wallets)</li>
+      <li>Cognitive computing infrastructure (cloud/edge inference engines)</li>
+      <li>Academic-industrial consortiums in human-like machine understanding</li>
+    </ul>
 
-    <div class="uses">
-        <strong>Ideal for cutting-edge projects in:</strong>
-        <ul>
-            <li>AGI and superintelligent cognitive architectures</li>
-            <li>Advanced neural networks and brain-inspired computing</li>
-            <li>Cognitive science research platforms and labs</li>
-            <li>Multimodal perception and contextual understanding systems</li>
-            <li>Symbolic-connectionist hybrid AI models (inspired by MIT COGNET)</li>
-            <li>EU-level cognitive computing initiatives and consortia</li>
-            <li>Distributed cognitive agents and intelligent network ecosystems</li>
-            <li>Next-gen knowledge graphs and semantic reasoning engines</li>
-            <li>Mysterious frontier AI research and secretive AGI ventures</li>
-        </ul>
-    </div>
+    <p class="price">Available for acquisition: <strong>$36,900 USD</strong> (6-month installment plan)</p>
 
-    <div class="price">$36,900 USD</div>
-    <div class="contact">
-        Flexible payment in 6 installments<br><br>
-        Contact: <a href="mailto:joshua369x@gmail.com" class="email">joshua369x@gmail.com</a>
-    </div>
+    <p class="contact">Contact: <a href="mailto:joshua369x@gmail.com">joshua369x@gmail.com</a></p>
 
-    <footer>xcognet.com — Unlock the Infinite Cognitive Future</footer>
+    <footer>Where cognition becomes networked, autonomous, and infinite.</footer>
+  </div>
 </body>
 </html>
