@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>XCOGNET | The Cognitive Substrate</title>
-    <meta name="description" content="xCogNet: The Cognitive Substrate for the Post-LLM Era. Premium domain infrastructure for AGI.">
+    <title>XCOGNET | The Cognitive Foundation</title>
+    <meta name="description" content="xCogNet: The Cognitive Foundation for Next-Gen AI. Premium domain infrastructure for AGI, Web3 AI, and Neuro-Symbolic Systems.">
     
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -22,6 +22,7 @@
             --bg-base: #030305;
             --cyan-electric: #00F0FF;
             --violet-deep: #8A2BE2;
+            --gold-lucky: #FFD700;
             --font-head: 'Orbitron', sans-serif;
             --font-body: 'Rajdhani', sans-serif;
             --font-data: 'Share Tech Mono', monospace;
@@ -32,17 +33,16 @@
             color: #ffffff;
             font-family: var(--font-body);
             overflow-x: hidden;
-            /* 动态扫描线背景 */
             background-image: 
                 linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), 
                 linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03));
             background-size: 100% 2px, 3px 100%;
         }
 
-        h1, h2, h3 { font-family: var(--font-head); }
+        h1, h2, h3, h4 { font-family: var(--font-head); }
         .mono { font-family: var(--font-data); }
 
-        /* --- 核心特效 A：X 的高能故障闪烁 (v3 基础) --- */
+        /* --- X Symbol Animation --- */
         .x-symbol {
             display: inline-block;
             color: var(--cyan-electric);
@@ -62,18 +62,13 @@
             100% { opacity: 1; }
         }
 
-        /* --- 核心特效 B：COGNET 的激光渐变 (v1 + v2 融合) --- */
+        /* --- Cognet Text Animation --- */
         .cognet-text {
-            /* 基础渐变 */
             background: linear-gradient(120deg, #ffffff 20%, var(--violet-deep) 50%, var(--cyan-electric) 80%);
             background-size: 200% auto;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            
-            /* 激光扫过动画 */
             animation: shine-flow 4s linear infinite;
-            
-            /* 霓虹辉光 (v1 特性) */
             filter: drop-shadow(0 0 8px rgba(138, 43, 226, 0.5));
         }
 
@@ -82,7 +77,19 @@
             100% { background-position: 200% 50%; }
         }
 
-        /* 按钮与卡片特效 */
+        /* --- Lucky Badge --- */
+        .lucky-badge {
+            border: 1px solid var(--gold-lucky);
+            color: var(--gold-lucky);
+            box-shadow: 0 0 10px rgba(255, 215, 0, 0.2);
+            animation: glow-gold 3s infinite alternate;
+        }
+        @keyframes glow-gold {
+            from { box-shadow: 0 0 5px rgba(255, 215, 0, 0.1); }
+            to { box-shadow: 0 0 15px rgba(255, 215, 0, 0.4); }
+        }
+
+        /* --- UI Elements --- */
         .btn-glow {
             background: rgba(0, 240, 255, 0.1);
             border: 1px solid var(--cyan-electric);
@@ -103,7 +110,6 @@
             transition: 0.4s;
             display: flex;
             flex-direction: column;
-            position: relative;
         }
         .pricing-card:hover {
             border-color: var(--cyan-electric);
@@ -116,6 +122,17 @@
             background: linear-gradient(160deg, rgba(0, 240, 255, 0.05), rgba(138, 43, 226, 0.05));
             border: 1px solid rgba(0, 240, 255, 0.3);
             box-shadow: 0 0 30px rgba(0, 240, 255, 0.1);
+        }
+
+        .horizon-box {
+            background: rgba(255,255,255,0.03);
+            border-left: 2px solid #333;
+            padding: 20px;
+            transition: 0.3s;
+        }
+        .horizon-box:hover {
+            background: rgba(255,255,255,0.06);
+            border-left-color: var(--cyan-electric);
         }
 
         /* Toast */
@@ -146,37 +163,100 @@
 </head>
 <body class="antialiased selection:bg-cyan-500 selection:text-black">
 
-    <!-- 顶部状态栏 -->
+    <!-- Navbar -->
     <nav class="w-full border-b border-white/5 p-4 flex justify-between items-center mono text-[10px] uppercase tracking-widest text-gray-500">
         <div><i class="fa-solid fa-circle text-green-500 text-[6px] mr-2 animate-pulse"></i>System Online</div>
-        <div>ID: XC-GENESIS-V4</div>
+        <div>ID: XC-PRIME-V6</div>
     </nav>
 
     <!-- Main Content -->
     <main class="container mx-auto px-6 py-16 md:py-24 max-w-7xl">
 
         <!-- HERO SECTION -->
-        <section class="text-center mb-28 relative z-10">
-            <!-- 标签 -->
-            <div class="inline-flex items-center gap-2 border border-cyan-500/30 bg-cyan-900/10 px-4 py-1 rounded-full mb-8">
-                <span class="w-2 h-2 bg-cyan-400 rounded-full animate-ping"></span>
-                <span class="mono text-xs text-cyan-300 tracking-widest">INFRASTRUCTURE ASSETS DETECTED</span>
+        <section class="text-center mb-24 relative z-10">
+            <!-- Badges -->
+            <div class="flex flex-wrap justify-center gap-4 mb-8">
+                <div class="inline-flex items-center gap-2 border border-cyan-500/30 bg-cyan-900/10 px-4 py-1 rounded-full">
+                    <span class="w-2 h-2 bg-cyan-400 rounded-full animate-ping"></span>
+                    <span class="mono text-xs text-cyan-300 tracking-widest">DOMAIN ASSET AVAILABLE</span>
+                </div>
+                <!-- Lucky 7 Badge -->
+                <div class="lucky-badge inline-flex items-center gap-2 px-4 py-1 rounded-full bg-yellow-900/10">
+                    <i class="fa-solid fa-star text-[10px]"></i>
+                    <span class="mono text-xs tracking-widest font-bold">LUCKY 7 LETTERS</span>
+                </div>
             </div>
             
-            <!-- 核心标题：特效融合 -->
-            <h1 class="text-6xl md:text-8xl lg:text-[10rem] font-black mb-6 tracking-tighter leading-none select-none">
+            <!-- Brand Name (Added translate="no" to prevent partial translation errors) -->
+            <h1 class="text-6xl md:text-8xl lg:text-[10rem] font-black mb-6 tracking-tighter leading-none select-none" translate="no">
                 <span class="x-symbol">X</span><span class="cognet-text">COGNET</span>
             </h1>
             
+            <!-- Updated Tagline: Replaced "Substrate" and "Post-LLM" -->
             <p class="text-xl md:text-2xl text-gray-400 font-light tracking-wide max-w-3xl mx-auto leading-relaxed mt-8">
-                The Cognitive Substrate for <span class="text-white font-medium">Infinite Intelligence</span>
+                The Cognitive <span class="text-white font-medium">Foundation</span> for <span class="text-white font-medium">Next-Gen AI</span>
             </p>
 
-            <!-- 数据点 -->
-            <div class="flex justify-center gap-6 md:gap-12 mt-12 text-xs mono text-gray-600 uppercase tracking-widest">
-                <span>[ 7 CHARACTERS ]</span>
+            <!-- Data Points -->
+            <div class="flex flex-wrap justify-center gap-6 md:gap-12 mt-12 text-xs mono text-gray-600 uppercase tracking-widest">
                 <span class="text-cyan-600">[ .COM + .AI ]</span>
                 <span>[ PROTOCOL LAYER ]</span>
+                <span>[ NEURO-SYMBOLIC ]</span>
+            </div>
+        </section>
+
+        <!-- DEPLOYMENT HORIZONS -->
+        <section class="max-w-6xl mx-auto mb-24">
+            <div class="flex items-end justify-between mb-8 border-b border-white/10 pb-2">
+                <h2 class="text-2xl font-bold text-white">Deployment Horizons</h2>
+                <span class="mono text-xs text-gray-500">/// ARCHITECTURE_FIT</span>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                
+                <!-- 2026: Immediate Fit -->
+                <div>
+                    <h3 class="mono text-cyan-400 text-sm mb-6 flex items-center gap-2">
+                        <i class="fa-regular fa-clock"></i> IMMEDIATE DEPLOYMENT (2026+)
+                    </h3>
+                    <div class="space-y-4">
+                        <div class="horizon-box">
+                            <h4 class="text-lg text-white mb-1"><i class="fa-solid fa-project-diagram mr-2 text-cyan-500"></i>Neuro-Symbolic AI & RAG</h4>
+                            <!-- Updated: "solve AI hallucinations" to avoid Law Master confusion -->
+                            <p class="text-xs text-gray-400">Perfect for systems fusing Neural Networks with Knowledge Graphs to solve AI hallucinations.</p>
+                        </div>
+                        <div class="horizon-box">
+                            <h4 class="text-lg text-white mb-1"><i class="fa-brands fa-hive mr-2 text-cyan-500"></i>Web3 & Decentralized AI</h4>
+                            <p class="text-xs text-gray-400">Ideal for Blockchain-based Cognitive Networks, DePIN nodes, and Crypto-AI trading bots.</p>
+                        </div>
+                        <div class="horizon-box">
+                            <h4 class="text-lg text-white mb-1"><i class="fa-solid fa-brain mr-2 text-cyan-500"></i>Brain Science & BCI</h4>
+                            <p class="text-xs text-gray-400">Identity for next-gen Brain-Computer Interfaces, psychology AI, and educational tools.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2030: Future Vision -->
+                <div>
+                    <h3 class="mono text-violet-400 text-sm mb-6 flex items-center gap-2">
+                        <i class="fa-solid fa-rocket"></i> AGI ERA VISION (2030+)
+                    </h3>
+                    <div class="space-y-4">
+                        <div class="horizon-box" style="border-left-color: var(--violet-deep);">
+                            <h4 class="text-lg text-white mb-1"><i class="fa-solid fa-microchip mr-2 text-violet-500"></i>AGI Infrastructure</h4>
+                            <p class="text-xs text-gray-400">The "Intel Inside" for Artificial General Intelligence. A foundational name for the Superintelligence era.</p>
+                        </div>
+                        <div class="horizon-box" style="border-left-color: var(--violet-deep);">
+                            <h4 class="text-lg text-white mb-1"><i class="fa-solid fa-vr-cardboard mr-2 text-violet-500"></i>Metaverse Cognition</h4>
+                            <p class="text-xs text-gray-400">The mind-layer for VR/AR worlds, digital twins, and autonomous robotic consciousness.</p>
+                        </div>
+                        <div class="horizon-box" style="border-left-color: var(--violet-deep);">
+                            <h4 class="text-lg text-white mb-1"><i class="fa-solid fa-shield-cat mr-2 text-violet-500"></i>AI Safety & Ethics</h4>
+                            <p class="text-xs text-gray-400">A trusted brand for "Knowledge-Enhanced" safe AI systems and global alignment protocols.</p>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </section>
 
@@ -201,9 +281,9 @@
                         <div class="h-px w-10 bg-gray-700 mb-6"></div>
                         
                         <div class="text-gray-400 text-sm mb-8 space-y-3 flex-grow">
-                            <p><i class="fa-solid fa-globe mr-2 text-cyan-500"></i> Premium .COM TLD</p>
-                            <p><i class="fa-solid fa-check mr-2 text-cyan-500"></i> Global Authority</p>
-                            <p><i class="fa-solid fa-check mr-2 text-cyan-500"></i> 7-Letter Symmetry</p>
+                            <p><i class="fa-solid fa-globe mr-2 text-cyan-500"></i> <strong>Premium .COM</strong></p>
+                            <p><i class="fa-solid fa-check mr-2 text-cyan-500"></i> Global Commercial Rights</p>
+                            <p><i class="fa-solid fa-check mr-2 text-cyan-500"></i> Lucky 7 Letters</p>
                         </div>
                         
                         <div class="mt-auto pt-6 border-t border-white/5">
@@ -222,9 +302,9 @@
                         <div class="h-px w-10 bg-cyan-900 mb-6"></div>
                         
                         <div class="text-gray-400 text-sm mb-8 space-y-3 flex-grow">
-                            <p><i class="fa-solid fa-microchip mr-2 text-cyan-500"></i> Specialized .AI TLD</p>
+                            <p><i class="fa-solid fa-microchip mr-2 text-cyan-500"></i> <strong>Specialized .AI</strong></p>
                             <p><i class="fa-solid fa-check mr-2 text-cyan-500"></i> Tech-Native Identity</p>
-                            <p><i class="fa-solid fa-check mr-2 text-cyan-500"></i> Direct Competitor Moat</p>
+                            <p><i class="fa-solid fa-check mr-2 text-cyan-500"></i> Secure the "X" Prefix</p>
                         </div>
                         
                         <div class="mt-auto pt-6 border-t border-white/5">
@@ -236,13 +316,11 @@
                         </div>
                     </div>
 
-                    <!-- Option 3: BUNDLE (Highlighted) -->
+                    <!-- Option 3: BUNDLE -->
                     <div class="pricing-card bundle-card p-8 rounded-lg relative overflow-hidden">
-                        <!-- Badge -->
                         <div class="absolute top-0 right-0 bg-cyan-500 text-black text-[10px] font-bold px-3 py-1 uppercase mono">
                             Best Value
                         </div>
-
                         <div class="mono text-xs text-violet-400 mb-2">/// TOTAL_SOVEREIGNTY</div>
                         <h3 class="text-2xl font-bold text-white mb-2">Full Package</h3>
                         <div class="h-px w-10 bg-violet-500 mb-6"></div>
@@ -250,13 +328,12 @@
                         <div class="text-gray-300 text-sm mb-8 space-y-3 flex-grow">
                             <p><span class="text-cyan-400">✓</span> <strong>xCogNet.com</strong></p>
                             <p><span class="text-cyan-400">✓</span> <strong>xCogNet.ai</strong></p>
-                            <p><span class="text-violet-400">★</span> Complete Brand Control</p>
+                            <p><span class="text-violet-400">★</span> <strong>7-Letter Dominance</strong></p>
                         </div>
                         
                         <div class="mt-auto pt-6 border-t border-white/10">
                             <div class="text-4xl font-bold text-cyan-400 mb-1 mono">$70,000</div>
                             <div class="text-[10px] text-gray-400 mb-4">Financing Terms Negotiable</div>
-                            <!-- Button triggers copyEmail for negotiation -->
                             <button onclick="copyEmail()" class="block w-full py-3 btn-glow font-bold text-center mono text-xs uppercase tracking-widest">
                                 Contact to Acquire
                             </button>
@@ -267,13 +344,13 @@
             </div>
         </section>
 
-        <!-- LEGAL (STYLED AS SYSTEM LOG) -->
+        <!-- LEGAL (SAFE) -->
         <section class="max-w-4xl mx-auto border-t border-white/5 pt-8 text-center opacity-60 hover:opacity-100 transition-opacity duration-500">
-            <h4 class="mono text-[10px] text-gray-600 mb-3 uppercase">/// COMPLIANCE_LOG_V4</h4>
+            <h4 class="mono text-[10px] text-gray-600 mb-3 uppercase">/// COMPLIANCE_LOG_V6</h4>
             <p class="text-[10px] text-gray-500 leading-relaxed max-w-2xl mx-auto font-mono">
-                NOTICE: xCogNet is an independent entity for AGI infrastructure. 
-                Distinct from MedCognetics, Inc. (cognet.ai) or Cognet9 Co., Ltd. 
-                The 'X' prefix designates an exponential, non-medical identity layer.
+                NOTICE: xCogNet is an independent brand for next-generation cognitive infrastructure. 
+                It is not affiliated with MedCognetics, Inc. (cognet.ai) or Cognet9 Co., Ltd. 
+                The 'X' prefix designates a distinct, autonomous identity layer, separate from legacy entities.
             </p>
         </section>
 
