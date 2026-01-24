@@ -3,326 +3,595 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>XCOGNET | The Cognitive Substrate</title>
-    <meta name="description" content="XCOGNET: The decentralized, self-organizing cognitive fabric for future AGI systems.">
+    <title>xcognet.com | The Nexus of Next-Generation Intelligence</title>
+    <meta name="description" content="xcognet.com: The premium domain for the architects of tomorrow's intelligence. Where X-Factor meets Cognitive Networks.">
     
-    <!-- Google Fonts -->
+    <!-- Google Fonts for Tech/Modern Aesthetic -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Plus+Jakarta+Sans:wght@300;400;600&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     
-    <!-- Tailwind CSS (CDN) -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Font Awesome -->
+    <!-- Font Awesome (CDN) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
+        /* --- CSS VARIABLES & RESET --- */
         :root {
-            --neon-cyan: #00f3ff;
-            --neon-purple: #bc13fe;
-            --deep-bg: #030407;
-            --glass: rgba(255, 255, 255, 0.05);
-            --glass-border: rgba(255, 255, 255, 0.1);
+            --color-bg: #0b0f19; /* Dark Navy/Charcoal */
+            --color-bg-alt: #111625;
+            --color-primary: #00AAFF; /* Electric Blue #0AF */
+            --color-secondary: #FF00FF; /* Vibrant Magenta #F0F */
+            --color-text: #ffffff;
+            --color-text-muted: #94a3b8;
+            --font-display: 'Orbitron', sans-serif;
+            --font-body: 'Plus Jakarta Sans', sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
         }
 
         body {
-            background-color: var(--deep-bg);
-            color: #e0e0e0;
-            font-family: 'Rajdhani', sans-serif;
+            background-color: var(--color-bg);
+            color: var(--color-text);
+            font-family: var(--font-body);
+            line-height: 1.6;
             overflow-x: hidden;
         }
 
-        h1, h2, h3 {
-            font-family: 'Orbitron', sans-serif;
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        ul { list-style: none; }
+
+        /* --- UTILITIES --- */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
         }
 
-        .mono {
-            font-family: 'Space Mono', monospace;
-        }
-
-        /* Animated Background Mesh */
-        .bg-mesh {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            z-index: -1;
-            background: 
-                radial-gradient(circle at 15% 50%, rgba(188, 19, 254, 0.08) 0%, transparent 50%),
-                radial-gradient(circle at 85% 30%, rgba(0, 243, 255, 0.08) 0%, transparent 50%);
-        }
+        .text-primary { color: var(--color-primary); }
+        .text-secondary { color: var(--color-secondary); }
         
-        .grid-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: 
-                linear-gradient(var(--glass-border) 1px, transparent 1px),
-                linear-gradient(90deg, var(--glass-border) 1px, transparent 1px);
-            background-size: 50px 50px;
-            opacity: 0.2;
-            z-index: -1;
-            mask-image: radial-gradient(circle at center, black 40%, transparent 100%);
-        }
-
-        /* Glitch Text Effect */
-        .glitch-text {
-            position: relative;
-            background: linear-gradient(90deg, #fff, var(--neon-cyan));
+        .gradient-text {
+            background: linear-gradient(90deg, var(--color-primary), #fff, var(--color-secondary));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            animation: hue-shift 8s infinite linear;
+            background-size: 200% auto;
+            animation: gradientMove 5s linear infinite;
         }
 
-        /* Glass Cards */
-        .glass-card {
-            background: var(--glass);
-            backdrop-filter: blur(12px);
-            border: 1px solid var(--glass-border);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        @keyframes gradientMove {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 200% 50%; }
         }
 
-        .glass-card:hover {
-            border-color: var(--neon-cyan);
-            box-shadow: 0 0 30px rgba(0, 243, 255, 0.15);
+        .section-padding { padding: 100px 0; }
+
+        /* --- ANIMATIONS --- */
+        .fade-in-section {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 1s ease-out, transform 1s ease-out;
+            will-change: opacity, visibility;
+        }
+
+        .fade-in-section.is-visible {
+            opacity: 1;
+            transform: none;
+        }
+
+        @keyframes pulse-glow {
+            0% { text-shadow: 0 0 10px rgba(0, 170, 255, 0.2); }
+            50% { text-shadow: 0 0 30px rgba(0, 170, 255, 0.6), 0 0 60px rgba(255, 0, 255, 0.4); }
+            100% { text-shadow: 0 0 10px rgba(0, 170, 255, 0.2); }
+        }
+
+        /* --- HEADER / HERO --- */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            background: radial-gradient(circle at 50% 10%, rgba(0, 170, 255, 0.05) 0%, transparent 60%);
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: 
+                linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            z-index: -1;
+            mask-image: radial-gradient(circle, black 40%, transparent 100%);
+        }
+
+        .hero-domain {
+            font-family: var(--font-display);
+            font-size: clamp(3rem, 10vw, 7rem);
+            font-weight: 900;
+            letter-spacing: -2px;
+            margin-bottom: 20px;
+            animation: pulse-glow 3s infinite;
+            cursor: default;
+        }
+
+        .hero-domain:hover {
+            transform: scale(1.02);
+            transition: transform 0.3s ease;
+        }
+
+        .hero-headline {
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: #fff;
+        }
+
+        .hero-sub {
+            font-size: 1.1rem;
+            color: var(--color-text-muted);
+            max-width: 600px;
+            margin: 0 auto 50px;
+        }
+
+        .btn-main {
+            display: inline-flex;
+            align-items: center;
+            padding: 18px 40px;
+            background: transparent;
+            border: 1px solid var(--color-primary);
+            color: var(--color-primary);
+            font-family: var(--font-display);
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s ease;
+        }
+
+        .btn-main::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 170, 255, 0.2), transparent);
+            transition: 0.5s;
+        }
+
+        .btn-main:hover {
+            background: rgba(0, 170, 255, 0.1);
+            box-shadow: 0 0 30px rgba(0, 170, 255, 0.4);
+            color: #fff;
+            border-color: #fff;
+        }
+
+        .btn-main:hover::before {
+            left: 100%;
+        }
+
+        /* --- SECTION 1: DECODED --- */
+        .decode-section {
+            background-color: var(--color-bg-alt);
+            border-top: 1px solid rgba(255,255,255,0.05);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .section-title {
+            font-family: var(--font-display);
+            font-size: 2rem;
+            text-align: center;
+            margin-bottom: 60px;
+            letter-spacing: 1px;
+        }
+
+        .breakdown-grid {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        @media (max-width: 768px) {
+            .breakdown-grid { grid-template-columns: 1fr; text-align: center; }
+        }
+
+        .breakdown-card {
+            background: rgba(255,255,255,0.02);
+            border: 1px solid rgba(255,255,255,0.05);
+            padding: 40px;
+            border-radius: 4px;
+            transition: 0.3s;
+        }
+
+        .breakdown-card:hover {
+            border-color: var(--color-primary);
             transform: translateY(-5px);
         }
 
-        /* Buttons */
-        .btn-primary {
-            background: transparent;
-            border: 1px solid var(--neon-cyan);
-            color: var(--neon-cyan);
-            position: relative;
-            overflow: hidden;
-            transition: all 0.3s ease;
-            z-index: 1;
+        .breakdown-header {
+            font-family: var(--font-display);
+            font-size: 3rem;
+            margin-bottom: 20px;
+            display: block;
         }
 
-        .btn-primary::before {
+        .breakdown-list li {
+            margin-bottom: 10px;
+            font-size: 0.95rem;
+            color: var(--color-text-muted);
+            border-left: 2px solid rgba(255,255,255,0.1);
+            padding-left: 15px;
+        }
+        
+        .plus-symbol {
+            font-size: 3rem;
+            color: var(--color-text-muted);
+            opacity: 0.3;
+            text-align: center;
+        }
+
+        .decode-summary {
+            text-align: center;
+            margin-top: 60px;
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        /* --- SECTION 2: VISION --- */
+        .vision-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .vision-item {
+            padding: 30px;
+            background: linear-gradient(145deg, rgba(255,255,255,0.03) 0%, transparent 100%);
+            border-left: 3px solid transparent;
+            transition: 0.3s;
+        }
+
+        .vision-item:hover {
+            border-left-color: var(--color-secondary);
+            background: rgba(255,255,255,0.05);
+        }
+
+        .vision-icon {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: var(--color-secondary);
+        }
+
+        .vision-title {
+            font-family: var(--font-display);
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
+        .vision-desc {
+            font-size: 0.9rem;
+            color: var(--color-text-muted);
+        }
+
+        /* --- SECTION 3: OFFER --- */
+        .offer-section {
+            background: radial-gradient(circle at 50% 50%, rgba(255, 0, 255, 0.05) 0%, var(--color-bg) 70%);
+        }
+
+        .offer-box {
+            border: 1px solid rgba(255,255,255,0.1);
+            background: rgba(11, 15, 25, 0.8);
+            backdrop-filter: blur(10px);
+            padding: 50px;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .offer-box::after {
             content: '';
             position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: var(--neon-cyan);
-            transition: all 0.3s ease;
+            top: -1px; left: -1px; right: -1px; bottom: -1px;
+            border-radius: inherit;
+            background: linear-gradient(45deg, var(--color-primary), transparent, var(--color-secondary));
             z-index: -1;
+            opacity: 0.3;
         }
 
-        .btn-primary:hover::before {
-            left: 0;
+        .price-display {
+            font-family: var(--font-mono);
+            font-size: 3rem;
+            color: #fff;
+            margin: 30px 0 10px;
         }
 
-        .btn-primary:hover {
+        .price-note {
+            color: var(--color-text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 40px;
+        }
+
+        .feature-list {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 40px;
+        }
+
+        .feature-badge {
+            font-size: 0.8rem;
+            background: rgba(255,255,255,0.05);
+            padding: 5px 15px;
+            border-radius: 50px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .cta-group {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .btn-buy {
+            background: var(--color-primary);
             color: #000;
-            box-shadow: 0 0 20px var(--neon-cyan);
+            padding: 15px 50px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-family: var(--font-display);
+            width: 100%;
+            max-width: 400px;
         }
 
-        .btn-secondary {
-            border: 1px solid var(--neon-purple);
-            color: var(--neon-purple);
+        .btn-buy:hover {
+            background: #fff;
+            box-shadow: 0 0 20px var(--color-primary);
         }
 
-        .btn-secondary:hover {
-            background: rgba(188, 19, 254, 0.1);
-            box-shadow: 0 0 20px rgba(188, 19, 254, 0.3);
-            text-shadow: 0 0 8px var(--neon-purple);
+        .email-link {
+            font-family: var(--font-mono);
+            color: var(--color-text-muted);
+            font-size: 0.9rem;
+            border-bottom: 1px dotted var(--color-text-muted);
+            padding-bottom: 2px;
         }
 
-        /* Terminal Pricing */
-        .terminal-box {
-            background: rgba(0, 0, 0, 0.8);
-            border-left: 3px solid var(--neon-cyan);
-            font-family: 'Space Mono', monospace;
+        .email-link:hover {
+            color: var(--color-secondary);
+            border-color: var(--color-secondary);
         }
 
-        .cursor::after {
-            content: '_';
-            animation: blink 1s step-end infinite;
-        }
-
-        @keyframes blink { 50% { opacity: 0; } }
-
-        /* Toast Notification */
-        #toast {
-            visibility: hidden;
-            min-width: 250px;
-            background-color: rgba(0, 243, 255, 0.1);
-            color: var(--neon-cyan);
-            border: 1px solid var(--neon-cyan);
+        /* --- FOOTER --- */
+        footer {
+            padding: 40px 0;
             text-align: center;
-            border-radius: 4px;
-            padding: 16px;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            font-size: 0.8rem;
+            color: #555;
+        }
+
+        footer a { color: #777; }
+        footer a:hover { color: #fff; }
+
+        /* --- TOAST --- */
+        #copy-toast {
             position: fixed;
-            z-index: 50;
             bottom: 30px;
             left: 50%;
-            transform: translateX(-50%);
-            font-family: 'Space Mono', monospace;
-            backdrop-filter: blur(10px);
-            box-shadow: 0 0 20px rgba(0, 243, 255, 0.2);
+            transform: translateX(-50%) translateY(100px);
+            background: rgba(0, 170, 255, 0.1);
+            border: 1px solid var(--color-primary);
+            color: var(--color-primary);
+            padding: 12px 24px;
+            font-family: var(--font-mono);
+            font-size: 0.9rem;
+            backdrop-filter: blur(5px);
             opacity: 0;
-            transition: opacity 0.3s, bottom 0.3s;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            z-index: 100;
         }
 
-        #toast.show {
-            visibility: visible;
+        #copy-toast.active {
+            transform: translateX(-50%) translateY(0);
             opacity: 1;
-            bottom: 50px;
         }
 
-        /* Utilities */
-        .text-glow { text-shadow: 0 0 10px rgba(0, 243, 255, 0.5); }
-        .text-glow-purple { text-shadow: 0 0 10px rgba(188, 19, 254, 0.5); }
     </style>
 </head>
-<body class="antialiased selection:bg-cyan-500 selection:text-black">
+<body>
 
-    <!-- Background Elements -->
-    <div class="bg-mesh"></div>
-    <div class="grid-overlay"></div>
+    <!-- HERO SECTION -->
+    <header class="hero">
+        <div class="container">
+            <h1 class="hero-domain gradient-text">xcognet.com</h1>
+            <h2 class="hero-headline">Claim the Core of Cognitive Computing</h2>
+            <p class="hero-sub">A premium domain name for the architects of tomorrow's intelligence.</p>
+            <a href="#offer" class="btn-main">
+                Inquire to Purchase
+            </a>
+        </div>
+    </header>
 
-    <!-- Main Container -->
-    <main class="min-h-screen flex flex-col items-center justify-center px-4 relative">
-        
-        <!-- Hero Section -->
-        <section class="text-center max-w-5xl mx-auto py-20 relative z-10">
-            <div class="mb-6 inline-block px-3 py-1 border border-white/20 rounded-full bg-white/5 backdrop-blur text-xs tracking-[0.2em] uppercase text-gray-400">
-                Premium Domain Asset
-            </div>
+    <!-- SECTION 1: THE NAME DECODED -->
+    <section class="section-padding decode-section fade-in-section">
+        <div class="container">
+            <h2 class="section-title">Deconstructing a Future-Proof Brand</h2>
             
-            <h1 class="text-6xl md:text-8xl lg:text-9xl font-black mb-4 tracking-tighter">
-                <span class="glitch-text">XCOGNET</span>
-            </h1>
+            <div class="breakdown-grid">
+                <!-- X Side -->
+                <div class="breakdown-card">
+                    <span class="breakdown-header text-primary">X</span>
+                    <ul class="breakdown-list">
+                        <li>The Ultimate Variable</li>
+                        <li>eXponential Growth</li>
+                        <li>The Unknown (X-Factor)</li>
+                        <li>Innovation & Frontier Tech</li>
+                        <li>Next Generation</li>
+                    </ul>
+                </div>
+
+                <div class="plus-symbol">+</div>
+
+                <!-- Cognet Side -->
+                <div class="breakdown-card">
+                    <span class="breakdown-header text-secondary">COGNET</span>
+                    <ul class="breakdown-list">
+                        <li>Cognitive Science</li>
+                        <li>Neural Networks</li>
+                        <li>Interconnected Systems</li>
+                        <li>Swarm Intelligence</li>
+                        <li>Knowledge Graphs</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="decode-summary">
+                xcognet.com = <span class="text-primary">The Launchpad</span> for <span class="text-secondary">Uncharted Intelligence</span>.
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 2: VISION & APPLICATIONS -->
+    <section class="section-padding fade-in-section">
+        <div class="container">
+            <h2 class="section-title">Your Vision, Powered by XCOGNET</h2>
             
-            <p class="text-xl md:text-2xl text-gray-300 font-light tracking-wide max-w-3xl mx-auto leading-relaxed">
-                The Cognitive Substrate for <span class="text-cyan-400 font-medium">AGI</span>
-            </p>
-
-            <!-- Definition / Ethos -->
-            <div class="mt-12 mb-16 grid grid-cols-1 md:grid-cols-2 gap-8 text-left">
-                <div class="glass-card p-6 rounded-lg">
-                    <h3 class="text-2xl text-white mb-2"><span class="text-cyan-400">X</span> / Variable</h3>
-                    <p class="text-gray-400 text-sm leading-6">Symbolizing the exponential, the unknown, and the frontier of synthetic intelligence.</p>
+            <div class="vision-grid">
+                <div class="vision-item">
+                    <i class="fa-solid fa-microchip vision-icon"></i>
+                    <h3 class="vision-title">AGI Research Labs</h3>
+                    <p class="vision-desc">The definitive home for Artificial General Intelligence projects seeking a serious, academic yet futuristic identity.</p>
                 </div>
-                <div class="glass-card p-6 rounded-lg">
-                    <h3 class="text-2xl text-white mb-2"><span class="text-purple-500">COGNET</span> / Structure</h3>
-                    <p class="text-gray-400 text-sm leading-6">A neologism of "Cognition" + "Network". The decentralized fabric of future minds.</p>
+
+                <div class="vision-item">
+                    <i class="fa-solid fa-brain vision-icon"></i>
+                    <h3 class="vision-title">Neuromorphic Computing</h3>
+                    <p class="vision-desc">Perfect for hardware startups building the physical substrate of the global cognitive network.</p>
+                </div>
+
+                <div class="vision-item">
+                    <i class="fa-solid fa-cloud vision-icon"></i>
+                    <h3 class="vision-title">AI SaaS Platforms</h3>
+                    <p class="vision-desc">A scalable, pronounceable brand name for enterprise-grade cognitive services.</p>
+                </div>
+
+                <div class="vision-item">
+                    <i class="fa-solid fa-circle-nodes vision-icon"></i>
+                    <h3 class="vision-title">Decentralized AI</h3>
+                    <p class="vision-desc">Identity for autonomous agents, blockchain-based inference protocols, and swarm consensus layers.</p>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Use Cases -->
-        <section class="w-full max-w-6xl mx-auto mb-20">
-            <h2 class="text-center text-sm font-bold tracking-[0.3em] text-gray-500 mb-8 uppercase">Deployable Architectures</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <!-- Card 1 -->
-                <div class="glass-card p-8 rounded-xl group">
-                    <i class="fa-solid fa-network-wired text-3xl text-cyan-400 mb-4 group-hover:animate-pulse"></i>
-                    <h3 class="text-xl font-bold mb-2">Neural Interfaces (BCI)</h3>
-                    <p class="text-sm text-gray-400">Low-latency naming for direct brain-to-cloud cognitive extensions and bio-digital bridges.</p>
-                </div>
-                <!-- Card 2 -->
-                <div class="glass-card p-8 rounded-xl group">
-                    <i class="fa-solid fa-microchip text-3xl text-purple-500 mb-4 group-hover:animate-pulse"></i>
-                    <h3 class="text-xl font-bold mb-2">Autonomous Agents</h3>
-                    <p class="text-sm text-gray-400">Identity layer for decentralized AI swarms and self-organizing economic actors.</p>
-                </div>
-                <!-- Card 3 -->
-                <div class="glass-card p-8 rounded-xl group">
-                    <i class="fa-solid fa-diagram-project text-3xl text-white mb-4 group-hover:animate-pulse"></i>
-                    <h3 class="text-xl font-bold mb-2">Synthetic Consciousness</h3>
-                    <p class="text-sm text-gray-400">The foundational namespace for next-gen knowledge graphs and recursive self-improvement.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Pricing & CTA -->
-        <section class="w-full max-w-2xl mx-auto mb-24 relative z-10">
-            <!-- Terminal Pricing Display -->
-            <div class="terminal-box p-6 rounded mb-8 shadow-2xl">
-                <div class="flex justify-between items-end border-b border-gray-800 pb-4 mb-4">
-                    <span class="text-gray-500 text-xs">STATUS: <span class="text-green-500">AVAILABLE</span></span>
-                    <span class="text-gray-500 text-xs">PROTOCOL: <span class="text-white">ERC-721 / DNS</span></span>
-                </div>
-                <div class="flex flex-col md:flex-row justify-between items-center">
-                    <div class="mb-4 md:mb-0">
-                        <p class="text-gray-400 text-xs uppercase tracking-widest mb-1">Acquisition Price</p>
-                        <p class="text-4xl md:text-5xl text-white font-bold tracking-tighter cursor">$42,000<span class="text-lg text-gray-500 font-normal">.00</span></p>
-                    </div>
-                    <div class="text-right">
-                        <div class="inline-flex items-center gap-2 text-xs text-cyan-400 bg-cyan-900/20 px-3 py-1 rounded border border-cyan-900/50">
-                            <i class="fa-solid fa-check"></i> Verified Listing
-                        </div>
-                        <p class="text-gray-500 text-xs mt-2 max-w-[150px] leading-tight ml-auto">
-                            Available in 12 monthly installments via Afternic.
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Action Buttons -->
-            <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="https://www.afternic.com/domain/xcognet.com" target="_blank" class="btn-primary px-8 py-4 text-lg font-bold uppercase tracking-widest flex items-center justify-center gap-3 w-full sm:w-auto text-center rounded">
-                    Acquire Now <i class="fa-solid fa-arrow-right-long"></i>
-                </a>
+    <!-- SECTION 3: OFFER -->
+    <section id="offer" class="section-padding offer-section fade-in-section">
+        <div class="container">
+            <div class="offer-box">
+                <h2 class="section-title" style="margin-bottom: 20px;">Acquire a Foundational Digital Asset</h2>
+                <p style="color: #fff; letter-spacing: 2px; text-transform: uppercase; font-size: 0.8rem;">Domain for Sale</p>
                 
-                <button onclick="copyEmail()" class="btn-secondary px-8 py-4 text-lg font-bold uppercase tracking-widest flex items-center justify-center gap-3 w-full sm:w-auto rounded bg-transparent transition-colors">
-                    Make Offer <i class="fa-regular fa-copy"></i>
-                </button>
+                <div class="price-display">$42,000 USD</div>
+                <p class="price-note">Flexible terms available. Seller may consider structured payment plans (e.g., 12 months) for qualified buyers.</p>
+
+                <div class="feature-list">
+                    <span class="feature-badge">Premium .com</span>
+                    <span class="feature-badge">7 Characters</span>
+                    <span class="feature-badge">Highly Brandable</span>
+                    <span class="feature-badge">Technologically Profound</span>
+                </div>
+
+                <div class="cta-group">
+                    <a href="https://www.afternic.com/domain/xcognet.com" target="_blank" class="btn-buy">
+                        Buy Now on Afternic <i class="fa-solid fa-arrow-right" style="margin-left: 10px;"></i>
+                    </a>
+                    
+                    <div style="margin-top: 15px;">
+                        <span style="color: #777; font-size: 0.9rem;">Direct Inquiries:</span><br>
+                        <a href="mailto:joshua369x@gmail.com" class="email-link" onclick="copyEmail(event)">joshua369x@gmail.com</a>
+                    </div>
+                </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Footer -->
-        <footer class="w-full text-center pb-8 opacity-60 hover:opacity-100 transition-opacity">
-            <p class="text-xs text-gray-500 font-mono mb-2">
-                &copy; <script>document.write(new Date().getFullYear())</script> XCOGNET. All rights reserved.
-            </p>
-            <button onclick="copyEmail()" class="text-xs text-gray-600 hover:text-cyan-400 transition-colors font-mono uppercase tracking-widest border-b border-dotted border-gray-700 hover:border-cyan-400 pb-0.5">
-                joshua369x@gmail.com
-            </button>
-        </footer>
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 xcognet.com • A Premium Digital Asset</p>
+            <p style="margin-top: 10px;">Contact: <a href="mailto:joshua369x@gmail.com">joshua369x@gmail.com</a></p>
+            <p style="margin-top: 5px; opacity: 0.5;">Domain listed via Afternic. Direct sale inquiries welcome.</p>
+        </div>
+    </footer>
 
-    </main>
-
-    <!-- Toast Notification -->
-    <div id="toast">
-        <i class="fa-solid fa-terminal mr-2"></i> SYSTEM: CONTACT COPIED
+    <!-- TOAST NOTIFICATION -->
+    <div id="copy-toast">
+        <i class="fa-solid fa-check"></i> Email Copied to Clipboard
     </div>
 
-    <!-- Logic -->
+    <!-- SCRIPTS -->
     <script>
-        function copyEmail() {
+        // Intersection Observer for Fade-in Animations
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in-section').forEach(section => {
+            observer.observe(section);
+        });
+
+        // Copy Email Functionality
+        function copyEmail(e) {
+            // Prevent default mailto behavior if user prefers copying
+            // But we keep the href for accessibility/right-click
+            e.preventDefault();
+            
             const email = "joshua369x@gmail.com";
+            
             navigator.clipboard.writeText(email).then(() => {
                 showToast();
+                // Optional: redirect to mailto after delay if desired, 
+                // but usually copying is enough for modern flows.
+                // window.location.href = "mailto:" + email;
             }).catch(err => {
                 console.error('Failed to copy: ', err);
+                // Fallback to default mailto if copy fails
+                window.location.href = "mailto:" + email;
             });
         }
 
         function showToast() {
-            const toast = document.getElementById("toast");
-            toast.className = "show";
-            setTimeout(function(){ 
-                toast.className = toast.className.replace("show", ""); 
+            const toast = document.getElementById('copy-toast');
+            toast.classList.add('active');
+            setTimeout(() => {
+                toast.classList.remove('active');
             }, 3000);
         }
-
-        // Add subtle parallax to grid
-        document.addEventListener('mousemove', (e) => {
-            const grid = document.querySelector('.grid-overlay');
-            const x = e.clientX / window.innerWidth;
-            const y = e.clientY / window.innerHeight;
-            
-            grid.style.transform = `translate(-${x * 10}px, -${y * 10}px)`;
-        });
     </script>
 </body>
 </html>
