@@ -32,48 +32,57 @@
             color: #ffffff;
             font-family: var(--font-body);
             overflow-x: hidden;
-            /* 细微的扫描线背景 */
-            background-image: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+            /* 动态扫描线背景 */
+            background-image: 
+                linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), 
+                linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03));
             background-size: 100% 2px, 3px 100%;
         }
 
         h1, h2, h3 { font-family: var(--font-head); }
         .mono { font-family: var(--font-data); }
 
-        /* --- 核心特效：X 的高能闪烁 --- */
+        /* --- 核心特效 A：X 的高能故障闪烁 (v3 基础) --- */
         .x-symbol {
             display: inline-block;
             color: var(--cyan-electric);
-            text-shadow: 0 0 10px var(--cyan-electric), 0 0 20px var(--cyan-electric);
+            text-shadow: 0 0 15px var(--cyan-electric), 0 0 30px var(--cyan-electric);
             position: relative;
             animation: x-pulse 4s infinite;
         }
 
-        /* X 的间歇性故障动画 */
         @keyframes x-pulse {
-            0%, 90% { opacity: 1; transform: scale(1); filter: hue-rotate(0deg); }
-            91% { opacity: 0.8; transform: skewX(10deg); }
-            92% { opacity: 1; transform: skewX(-10deg); filter: hue-rotate(90deg); }
-            93% { opacity: 0.5; transform: scale(1.1); }
-            94% { opacity: 1; transform: scale(1); }
-            96% { transform: translateX(-2px); }
-            97% { transform: translateX(2px); }
+            0%, 88% { opacity: 1; transform: scale(1); filter: hue-rotate(0deg); }
+            89% { opacity: 0.8; transform: skewX(10deg); }
+            90% { opacity: 1; transform: skewX(-10deg); filter: hue-rotate(90deg); }
+            91% { opacity: 0.5; transform: scale(1.1); }
+            92% { opacity: 1; transform: scale(1); }
+            94% { transform: translateX(-3px); }
+            95% { transform: translateX(3px); }
             100% { opacity: 1; }
         }
 
-        /* Cognet 部分的渐变 */
+        /* --- 核心特效 B：COGNET 的激光渐变 (v1 + v2 融合) --- */
         .cognet-text {
-            background: linear-gradient(to right, #fff, var(--violet-deep));
+            /* 基础渐变 */
+            background: linear-gradient(120deg, #ffffff 20%, var(--violet-deep) 50%, var(--cyan-electric) 80%);
+            background-size: 200% auto;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            
+            /* 激光扫过动画 */
+            animation: shine-flow 4s linear infinite;
+            
+            /* 霓虹辉光 (v1 特性) */
+            filter: drop-shadow(0 0 8px rgba(138, 43, 226, 0.5));
         }
 
-        /* 整体标题的 Glitch 容器 */
-        .glitch-wrapper {
-            position: relative;
+        @keyframes shine-flow {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 200% 50%; }
         }
 
-        /* 按钮特效 */
+        /* 按钮与卡片特效 */
         .btn-glow {
             background: rgba(0, 240, 255, 0.1);
             border: 1px solid var(--cyan-electric);
@@ -88,23 +97,32 @@
             box-shadow: 0 0 30px var(--cyan-electric);
         }
 
-        /* 价格卡片悬浮 */
         .pricing-card {
             background: rgba(255,255,255,0.02);
-            border: 1px solid rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.08);
             transition: 0.4s;
+            display: flex;
+            flex-direction: column;
+            position: relative;
         }
         .pricing-card:hover {
             border-color: var(--cyan-electric);
             transform: translateY(-5px);
             background: rgba(255,255,255,0.05);
+            box-shadow: 0 0 20px rgba(0, 240, 255, 0.05);
+        }
+        
+        .bundle-card {
+            background: linear-gradient(160deg, rgba(0, 240, 255, 0.05), rgba(138, 43, 226, 0.05));
+            border: 1px solid rgba(0, 240, 255, 0.3);
+            box-shadow: 0 0 30px rgba(0, 240, 255, 0.1);
         }
 
         /* Toast */
         #toast {
             visibility: hidden;
             min-width: 250px;
-            background-color: #000;
+            background-color: #050505;
             color: var(--cyan-electric);
             border: 1px solid var(--cyan-electric);
             text-align: center;
@@ -117,7 +135,7 @@
             font-family: var(--font-data);
             opacity: 0;
             transition: opacity 0.3s, bottom 0.3s;
-            box-shadow: 0 0 20px rgba(0, 240, 255, 0.3);
+            box-shadow: 0 0 25px rgba(0, 240, 255, 0.2);
         }
         #toast.show {
             visibility: visible;
@@ -131,7 +149,7 @@
     <!-- 顶部状态栏 -->
     <nav class="w-full border-b border-white/5 p-4 flex justify-between items-center mono text-[10px] uppercase tracking-widest text-gray-500">
         <div><i class="fa-solid fa-circle text-green-500 text-[6px] mr-2 animate-pulse"></i>System Online</div>
-        <div>ID: XC-GENESIS</div>
+        <div>ID: XC-GENESIS-V4</div>
     </nav>
 
     <!-- Main Content -->
@@ -142,11 +160,11 @@
             <!-- 标签 -->
             <div class="inline-flex items-center gap-2 border border-cyan-500/30 bg-cyan-900/10 px-4 py-1 rounded-full mb-8">
                 <span class="w-2 h-2 bg-cyan-400 rounded-full animate-ping"></span>
-                <span class="mono text-xs text-cyan-300 tracking-widest">DOMAIN ASSET AVAILABLE</span>
+                <span class="mono text-xs text-cyan-300 tracking-widest">INFRASTRUCTURE ASSETS DETECTED</span>
             </div>
             
-            <!-- 核心标题：X 独立特效 -->
-            <h1 class="text-7xl md:text-9xl lg:text-[10rem] font-black mb-6 tracking-tighter leading-none glitch-wrapper">
+            <!-- 核心标题：特效融合 -->
+            <h1 class="text-6xl md:text-8xl lg:text-[10rem] font-black mb-6 tracking-tighter leading-none select-none">
                 <span class="x-symbol">X</span><span class="cognet-text">COGNET</span>
             </h1>
             
@@ -155,35 +173,16 @@
             </p>
 
             <!-- 数据点 -->
-            <div class="flex justify-center gap-8 mt-12 text-xs mono text-gray-600 uppercase tracking-widest">
+            <div class="flex justify-center gap-6 md:gap-12 mt-12 text-xs mono text-gray-600 uppercase tracking-widest">
                 <span>[ 7 CHARACTERS ]</span>
                 <span class="text-cyan-600">[ .COM + .AI ]</span>
                 <span>[ PROTOCOL LAYER ]</span>
             </div>
         </section>
 
-        <!-- VALUE GRID -->
-        <section class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-24">
-            <div class="pricing-card p-8 rounded">
-                <i class="fa-solid fa-layer-group text-2xl text-cyan-400 mb-4"></i>
-                <h3 class="text-lg font-bold text-white mb-2">Not an App. An Architecture.</h3>
-                <p class="text-gray-500 text-sm">The distinct identifier for decentralized cognitive fabrics. Infrastructure grade naming.</p>
-            </div>
-            <div class="pricing-card p-8 rounded">
-                <i class="fa-solid fa-bolt text-2xl text-violet-500 mb-4"></i>
-                <h3 class="text-lg font-bold text-white mb-2">The "X" Variable</h3>
-                <p class="text-gray-500 text-sm">Symbolizing the exponential. Validated by market adoption of 'Cognet', redefined for the frontier.</p>
-            </div>
-            <div class="pricing-card p-8 rounded">
-                <i class="fa-solid fa-shield-halved text-2xl text-white mb-4"></i>
-                <h3 class="text-lg font-bold text-white mb-2">Defensive Moat</h3>
-                <p class="text-gray-500 text-sm">Secure the .COM and .AI pair. Total brand sovereignty in a crowded LLM landscape.</p>
-            </div>
-        </section>
-
         <!-- PRICING TERMINAL -->
-        <section class="max-w-5xl mx-auto mb-20">
-            <div class="border border-white/10 bg-black/50 backdrop-blur-md rounded-xl overflow-hidden">
+        <section class="max-w-7xl mx-auto mb-20">
+            <div class="border border-white/10 bg-black/60 backdrop-blur-md rounded-xl overflow-hidden shadow-2xl">
                 <!-- Terminal Header -->
                 <div class="bg-white/5 p-3 border-b border-white/10 flex items-center gap-2">
                     <div class="w-3 h-3 rounded-full bg-red-500/50"></div>
@@ -192,43 +191,75 @@
                     <div class="ml-4 mono text-xs text-gray-600">/root/acquisition_targets</div>
                 </div>
 
-                <div class="p-8 md:p-12 grid grid-cols-1 lg:grid-cols-2 gap-10">
+                <!-- 3-Column Pricing Grid -->
+                <div class="p-8 md:p-10 grid grid-cols-1 lg:grid-cols-3 gap-6">
                     
-                    <!-- Option A -->
-                    <div class="flex flex-col h-full">
-                        <div class="mono text-xs text-violet-400 mb-2">/// OPTION A: CORE</div>
-                        <h3 class="text-3xl font-bold text-white mb-4">xCogNet.com</h3>
-                        <div class="text-gray-400 text-sm mb-8 space-y-2 flex-grow">
-                            <p>> Premium .COM TLD</p>
-                            <p>> Global Commercial Rights</p>
+                    <!-- Option 1: .COM -->
+                    <div class="pricing-card p-8 rounded-lg">
+                        <div class="mono text-xs text-gray-500 mb-2">/// ASSET_01</div>
+                        <h3 class="text-2xl font-bold text-white mb-2">xCogNet.com</h3>
+                        <div class="h-px w-10 bg-gray-700 mb-6"></div>
+                        
+                        <div class="text-gray-400 text-sm mb-8 space-y-3 flex-grow">
+                            <p><i class="fa-solid fa-globe mr-2 text-cyan-500"></i> Premium .COM TLD</p>
+                            <p><i class="fa-solid fa-check mr-2 text-cyan-500"></i> Global Authority</p>
+                            <p><i class="fa-solid fa-check mr-2 text-cyan-500"></i> 7-Letter Symmetry</p>
                         </div>
-                        <div class="mt-auto">
-                            <div class="text-4xl font-bold text-white mb-1 mono">$42,000</div>
+                        
+                        <div class="mt-auto pt-6 border-t border-white/5">
+                            <div class="text-3xl font-bold text-white mb-1 mono">$42,000</div>
                             <div class="text-[10px] text-gray-500 mb-4">7 Monthly Payments Available</div>
-                            <button onclick="copyEmail()" class="w-full py-4 border border-gray-700 text-gray-400 hover:border-white hover:text-white transition-colors mono text-xs uppercase tracking-widest">
-                                Inquire (.com Only)
-                            </button>
+                            <a href="https://www.afternic.com/domain/xcognet.com" target="_blank" class="block w-full py-3 border border-gray-600 text-gray-400 text-center hover:border-white hover:text-white transition-colors mono text-xs uppercase tracking-widest">
+                                Acquire .COM
+                            </a>
                         </div>
                     </div>
 
-                    <!-- Option B -->
-                    <div class="flex flex-col h-full relative p-6 border border-cyan-500/30 bg-cyan-900/5 rounded">
-                        <div class="absolute -top-3 right-4 bg-cyan-500 text-black text-[10px] font-bold px-3 py-1 uppercase">
-                            Recommended
+                    <!-- Option 2: .AI -->
+                    <div class="pricing-card p-8 rounded-lg">
+                        <div class="mono text-xs text-cyan-500 mb-2">/// ASSET_02</div>
+                        <h3 class="text-2xl font-bold text-white mb-2">xCogNet.ai</h3>
+                        <div class="h-px w-10 bg-cyan-900 mb-6"></div>
+                        
+                        <div class="text-gray-400 text-sm mb-8 space-y-3 flex-grow">
+                            <p><i class="fa-solid fa-microchip mr-2 text-cyan-500"></i> Specialized .AI TLD</p>
+                            <p><i class="fa-solid fa-check mr-2 text-cyan-500"></i> Tech-Native Identity</p>
+                            <p><i class="fa-solid fa-check mr-2 text-cyan-500"></i> Direct Competitor Moat</p>
                         </div>
-                        <div class="mono text-xs text-cyan-400 mb-2">/// OPTION B: BUNDLE</div>
-                        <h3 class="text-3xl font-bold text-white mb-4">Full Package</h3>
-                        <div class="text-gray-300 text-sm mb-8 space-y-2 flex-grow">
+                        
+                        <div class="mt-auto pt-6 border-t border-white/5">
+                            <div class="text-3xl font-bold text-white mb-1 mono">$42,000</div>
+                            <div class="text-[10px] text-gray-500 mb-4">7 Monthly Payments Available</div>
+                            <a href="https://www.afternic.com/domain/xcognet.ai" target="_blank" class="block w-full py-3 border border-gray-600 text-gray-400 text-center hover:border-cyan-400 hover:text-cyan-400 transition-colors mono text-xs uppercase tracking-widest">
+                                Acquire .AI
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Option 3: BUNDLE (Highlighted) -->
+                    <div class="pricing-card bundle-card p-8 rounded-lg relative overflow-hidden">
+                        <!-- Badge -->
+                        <div class="absolute top-0 right-0 bg-cyan-500 text-black text-[10px] font-bold px-3 py-1 uppercase mono">
+                            Best Value
+                        </div>
+
+                        <div class="mono text-xs text-violet-400 mb-2">/// TOTAL_SOVEREIGNTY</div>
+                        <h3 class="text-2xl font-bold text-white mb-2">Full Package</h3>
+                        <div class="h-px w-10 bg-violet-500 mb-6"></div>
+                        
+                        <div class="text-gray-300 text-sm mb-8 space-y-3 flex-grow">
                             <p><span class="text-cyan-400">✓</span> <strong>xCogNet.com</strong></p>
                             <p><span class="text-cyan-400">✓</span> <strong>xCogNet.ai</strong></p>
-                            <p><span class="text-cyan-400">✓</span> Total Brand Control</p>
+                            <p><span class="text-violet-400">★</span> Complete Brand Control</p>
                         </div>
-                        <div class="mt-auto">
-                            <div class="text-4xl font-bold text-white mb-1 mono">$70,000</div>
-                            <div class="text-[10px] text-gray-500 mb-4">Financing via Afternic</div>
-                            <a href="https://www.afternic.com/domain/xcognet.com" target="_blank" class="block w-full text-center py-4 btn-glow mono text-xs uppercase tracking-widest font-bold">
-                                Acquire Bundle
-                            </a>
+                        
+                        <div class="mt-auto pt-6 border-t border-white/10">
+                            <div class="text-4xl font-bold text-cyan-400 mb-1 mono">$70,000</div>
+                            <div class="text-[10px] text-gray-400 mb-4">Financing Terms Negotiable</div>
+                            <!-- Button triggers copyEmail for negotiation -->
+                            <button onclick="copyEmail()" class="block w-full py-3 btn-glow font-bold text-center mono text-xs uppercase tracking-widest">
+                                Contact to Acquire
+                            </button>
                         </div>
                     </div>
 
@@ -238,7 +269,7 @@
 
         <!-- LEGAL (STYLED AS SYSTEM LOG) -->
         <section class="max-w-4xl mx-auto border-t border-white/5 pt-8 text-center opacity-60 hover:opacity-100 transition-opacity duration-500">
-            <h4 class="mono text-[10px] text-gray-600 mb-3 uppercase">/// COMPLIANCE_LOG_V3</h4>
+            <h4 class="mono text-[10px] text-gray-600 mb-3 uppercase">/// COMPLIANCE_LOG_V4</h4>
             <p class="text-[10px] text-gray-500 leading-relaxed max-w-2xl mx-auto font-mono">
                 NOTICE: xCogNet is an independent entity for AGI infrastructure. 
                 Distinct from MedCognetics, Inc. (cognet.ai) or Cognet9 Co., Ltd. 
