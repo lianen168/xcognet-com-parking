@@ -1,185 +1,328 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>xcognet.com</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XCOGNET | The Cognitive Substrate</title>
+    <meta name="description" content="XCOGNET: The decentralized, self-organizing cognitive fabric for future AGI systems.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS (CDN) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    body {
-      background: #0a0b1a;
-      color: #e0e0ff;
-      font-family: 'Inter', sans-serif;
-      min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      overflow: hidden;
-      position: relative;
-    }
+    <style>
+        :root {
+            --neon-cyan: #00f3ff;
+            --neon-purple: #bc13fe;
+            --deep-bg: #030407;
+            --glass: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
 
-    body::before {
-      content: "";
-      position: absolute;
-      top: 0; left: 0; width: 100%; height: 100%;
-      background: 
-        radial-gradient(circle at 30% 40%, rgba(40, 20, 80, 0.3) 0%, transparent 50%),
-        radial-gradient(circle at 70% 60%, rgba(20, 30, 70, 0.4) 0%, transparent 60%);
-      z-index: -1;
-    }
+        body {
+            background-color: var(--deep-bg);
+            color: #e0e0e0;
+            font-family: 'Rajdhani', sans-serif;
+            overflow-x: hidden;
+        }
 
-    .container {
-      text-align: center;
-      max-width: 860px;
-      padding: 2.8rem;
-    }
+        h1, h2, h3 {
+            font-family: 'Orbitron', sans-serif;
+        }
 
-    h1 {
-      font-family: 'Orbitron', monospace;
-      font-size: 3.8rem;
-      background: linear-gradient(95deg, #7a3eff, #00dbff, #b060ff);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-      margin-bottom: 1.3rem;
-      letter-spacing: 1.2px;
-      text-shadow: 0 0 20px rgba(122, 62, 255, 0.4);
-      animation: pulse-glow 5s infinite alternate;
-    }
+        .mono {
+            font-family: 'Space Mono', monospace;
+        }
 
-    @keyframes pulse-glow {
-      0% { opacity: 0.88; text-shadow: 0 0 18px rgba(0, 219, 255, 0.5); }
-      100% { opacity: 1; text-shadow: 0 0 32px rgba(176, 96, 255, 0.85); }
-    }
+        /* Animated Background Mesh */
+        .bg-mesh {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            background: 
+                radial-gradient(circle at 15% 50%, rgba(188, 19, 254, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 85% 30%, rgba(0, 243, 255, 0.08) 0%, transparent 50%);
+        }
+        
+        .grid-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(var(--glass-border) 1px, transparent 1px),
+                linear-gradient(90deg, var(--glass-border) 1px, transparent 1px);
+            background-size: 50px 50px;
+            opacity: 0.2;
+            z-index: -1;
+            mask-image: radial-gradient(circle at center, black 40%, transparent 100%);
+        }
 
-    .subtitle {
-      font-size: 1.18rem;
-      color: #c0c0f5;
-      margin-bottom: 2.2rem;
-      line-height: 1.65;
-      font-weight: 300;
-    }
+        /* Glitch Text Effect */
+        .glitch-text {
+            position: relative;
+            background: linear-gradient(90deg, #fff, var(--neon-cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: hue-shift 8s infinite linear;
+        }
 
-    .interpretation {
-      background: rgba(18, 18, 42, 0.68);
-      border: 1px solid rgba(110, 110, 200, 0.2);
-      border-radius: 16px;
-      padding: 1.5rem;
-      margin: 1.8rem 0 2.2rem;
-      font-size: 1rem;
-      line-height: 1.7;
-      backdrop-filter: blur(4px);
-    }
+        /* Glass Cards */
+        .glass-card {
+            background: var(--glass);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
 
-    .interpretation strong {
-      color: #00dbff;
-    }
+        .glass-card:hover {
+            border-color: var(--neon-cyan);
+            box-shadow: 0 0 30px rgba(0, 243, 255, 0.15);
+            transform: translateY(-5px);
+        }
 
-    ul {
-      text-align: left;
-      margin: 1.6rem auto;
-      max-width: 620px;
-      color: #d0d0ff;
-      line-height: 1.85;
-      list-style: none;
-      padding-left: 0;
-    }
+        /* Buttons */
+        .btn-primary {
+            background: transparent;
+            border: 1px solid var(--neon-cyan);
+            color: var(--neon-cyan);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            z-index: 1;
+        }
 
-    ul li {
-      position: relative;
-      padding-left: 1.8rem;
-    }
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--neon-cyan);
+            transition: all 0.3s ease;
+            z-index: -1;
+        }
 
-    ul li::before {
-      content: "●";
-      color: #7a3eff;
-      position: absolute;
-      left: 0;
-      top: 0.25rem;
-      font-size: 0.9rem;
-      animation: float 4s infinite ease-in-out;
-    }
+        .btn-primary:hover::before {
+            left: 0;
+        }
 
-    ul li:nth-child(2)::before { animation-delay: 0.3s; }
-    ul li:nth-child(3)::before { animation-delay: 0.6s; }
-    ul li:nth-child(4)::before { animation-delay: 0.9s; }
-    ul li:nth-child(5)::before { animation-delay: 1.2s; }
-    ul li:nth-child(6)::before { animation-delay: 1.5s; }
+        .btn-primary:hover {
+            color: #000;
+            box-shadow: 0 0 20px var(--neon-cyan);
+        }
 
-    @keyframes float {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-3px); }
-    }
+        .btn-secondary {
+            border: 1px solid var(--neon-purple);
+            color: var(--neon-purple);
+        }
 
-    .price {
-      font-size: 1.35rem;
-      margin: 2rem 0;
-      color: #00dbff;
-      font-weight: 600;
-    }
+        .btn-secondary:hover {
+            background: rgba(188, 19, 254, 0.1);
+            box-shadow: 0 0 20px rgba(188, 19, 254, 0.3);
+            text-shadow: 0 0 8px var(--neon-purple);
+        }
 
-    .contact {
-      margin-top: 2rem;
-      font-size: 1.05rem;
-    }
+        /* Terminal Pricing */
+        .terminal-box {
+            background: rgba(0, 0, 0, 0.8);
+            border-left: 3px solid var(--neon-cyan);
+            font-family: 'Space Mono', monospace;
+        }
 
-    .contact a {
-      color: #7a3eff;
-      text-decoration: none;
-      font-weight: 500;
-    }
+        .cursor::after {
+            content: '_';
+            animation: blink 1s step-end infinite;
+        }
 
-    .contact a:hover {
-      text-decoration: underline;
-    }
+        @keyframes blink { 50% { opacity: 0; } }
 
-    footer {
-      margin-top: 3rem;
-      font-size: 0.86rem;
-      color: #707095;
-      font-style: italic;
-    }
+        /* Toast Notification */
+        #toast {
+            visibility: hidden;
+            min-width: 250px;
+            background-color: rgba(0, 243, 255, 0.1);
+            color: var(--neon-cyan);
+            border: 1px solid var(--neon-cyan);
+            text-align: center;
+            border-radius: 4px;
+            padding: 16px;
+            position: fixed;
+            z-index: 50;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-family: 'Space Mono', monospace;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 0 20px rgba(0, 243, 255, 0.2);
+            opacity: 0;
+            transition: opacity 0.3s, bottom 0.3s;
+        }
 
-    @media (max-width: 600px) {
-      h1 { font-size: 2.6rem; }
-      .container { padding: 1.8rem; }
-      ul { font-size: 0.95rem; }
-    }
-  </style>
+        #toast.show {
+            visibility: visible;
+            opacity: 1;
+            bottom: 50px;
+        }
+
+        /* Utilities */
+        .text-glow { text-shadow: 0 0 10px rgba(0, 243, 255, 0.5); }
+        .text-glow-purple { text-shadow: 0 0 10px rgba(188, 19, 254, 0.5); }
+    </style>
 </head>
-<body>
-  <div class="container">
-    <h1>XCOGNET.COM</h1>
-    <p class="subtitle">A 7-character key to the cognitive frontier — where X unlocks the infinite potential of Cognet.</p>
+<body class="antialiased selection:bg-cyan-500 selection:text-black">
 
-    <div class="interpretation">
-      <strong>X + COGNET</strong> fuses the unknown variable with a legacy-rich cognitive architecture.<br>
-      Inspired by MIT’s symbolic-connectionist COGNET and EU’s multimodal Cognet Project — now reborn for the age of autonomous AGI.
+    <!-- Background Elements -->
+    <div class="bg-mesh"></div>
+    <div class="grid-overlay"></div>
+
+    <!-- Main Container -->
+    <main class="min-h-screen flex flex-col items-center justify-center px-4 relative">
+        
+        <!-- Hero Section -->
+        <section class="text-center max-w-5xl mx-auto py-20 relative z-10">
+            <div class="mb-6 inline-block px-3 py-1 border border-white/20 rounded-full bg-white/5 backdrop-blur text-xs tracking-[0.2em] uppercase text-gray-400">
+                Premium Domain Asset
+            </div>
+            
+            <h1 class="text-6xl md:text-8xl lg:text-9xl font-black mb-4 tracking-tighter">
+                <span class="glitch-text">XCOGNET</span>
+            </h1>
+            
+            <p class="text-xl md:text-2xl text-gray-300 font-light tracking-wide max-w-3xl mx-auto leading-relaxed">
+                The Cognitive Substrate for <span class="text-cyan-400 font-medium">AGI</span>
+            </p>
+
+            <!-- Definition / Ethos -->
+            <div class="mt-12 mb-16 grid grid-cols-1 md:grid-cols-2 gap-8 text-left">
+                <div class="glass-card p-6 rounded-lg">
+                    <h3 class="text-2xl text-white mb-2"><span class="text-cyan-400">X</span> / Variable</h3>
+                    <p class="text-gray-400 text-sm leading-6">Symbolizing the exponential, the unknown, and the frontier of synthetic intelligence.</p>
+                </div>
+                <div class="glass-card p-6 rounded-lg">
+                    <h3 class="text-2xl text-white mb-2"><span class="text-purple-500">COGNET</span> / Structure</h3>
+                    <p class="text-gray-400 text-sm leading-6">A neologism of "Cognition" + "Network". The decentralized fabric of future minds.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Use Cases -->
+        <section class="w-full max-w-6xl mx-auto mb-20">
+            <h2 class="text-center text-sm font-bold tracking-[0.3em] text-gray-500 mb-8 uppercase">Deployable Architectures</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Card 1 -->
+                <div class="glass-card p-8 rounded-xl group">
+                    <i class="fa-solid fa-network-wired text-3xl text-cyan-400 mb-4 group-hover:animate-pulse"></i>
+                    <h3 class="text-xl font-bold mb-2">Neural Interfaces (BCI)</h3>
+                    <p class="text-sm text-gray-400">Low-latency naming for direct brain-to-cloud cognitive extensions and bio-digital bridges.</p>
+                </div>
+                <!-- Card 2 -->
+                <div class="glass-card p-8 rounded-xl group">
+                    <i class="fa-solid fa-microchip text-3xl text-purple-500 mb-4 group-hover:animate-pulse"></i>
+                    <h3 class="text-xl font-bold mb-2">Autonomous Agents</h3>
+                    <p class="text-sm text-gray-400">Identity layer for decentralized AI swarms and self-organizing economic actors.</p>
+                </div>
+                <!-- Card 3 -->
+                <div class="glass-card p-8 rounded-xl group">
+                    <i class="fa-solid fa-diagram-project text-3xl text-white mb-4 group-hover:animate-pulse"></i>
+                    <h3 class="text-xl font-bold mb-2">Synthetic Consciousness</h3>
+                    <p class="text-sm text-gray-400">The foundational namespace for next-gen knowledge graphs and recursive self-improvement.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pricing & CTA -->
+        <section class="w-full max-w-2xl mx-auto mb-24 relative z-10">
+            <!-- Terminal Pricing Display -->
+            <div class="terminal-box p-6 rounded mb-8 shadow-2xl">
+                <div class="flex justify-between items-end border-b border-gray-800 pb-4 mb-4">
+                    <span class="text-gray-500 text-xs">STATUS: <span class="text-green-500">AVAILABLE</span></span>
+                    <span class="text-gray-500 text-xs">PROTOCOL: <span class="text-white">ERC-721 / DNS</span></span>
+                </div>
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <div class="mb-4 md:mb-0">
+                        <p class="text-gray-400 text-xs uppercase tracking-widest mb-1">Acquisition Price</p>
+                        <p class="text-4xl md:text-5xl text-white font-bold tracking-tighter cursor">$42,000<span class="text-lg text-gray-500 font-normal">.00</span></p>
+                    </div>
+                    <div class="text-right">
+                        <div class="inline-flex items-center gap-2 text-xs text-cyan-400 bg-cyan-900/20 px-3 py-1 rounded border border-cyan-900/50">
+                            <i class="fa-solid fa-check"></i> Verified Listing
+                        </div>
+                        <p class="text-gray-500 text-xs mt-2 max-w-[150px] leading-tight ml-auto">
+                            Available in 12 monthly installments via Afternic.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="https://www.afternic.com/domain/xcognet.com" target="_blank" class="btn-primary px-8 py-4 text-lg font-bold uppercase tracking-widest flex items-center justify-center gap-3 w-full sm:w-auto text-center rounded">
+                    Acquire Now <i class="fa-solid fa-arrow-right-long"></i>
+                </a>
+                
+                <button onclick="copyEmail()" class="btn-secondary px-8 py-4 text-lg font-bold uppercase tracking-widest flex items-center justify-center gap-3 w-full sm:w-auto rounded bg-transparent transition-colors">
+                    Make Offer <i class="fa-regular fa-copy"></i>
+                </button>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="w-full text-center pb-8 opacity-60 hover:opacity-100 transition-opacity">
+            <p class="text-xs text-gray-500 font-mono mb-2">
+                &copy; <script>document.write(new Date().getFullYear())</script> XCOGNET. All rights reserved.
+            </p>
+            <button onclick="copyEmail()" class="text-xs text-gray-600 hover:text-cyan-400 transition-colors font-mono uppercase tracking-widest border-b border-dotted border-gray-700 hover:border-cyan-400 pb-0.5">
+                joshua369x@gmail.com
+            </button>
+        </footer>
+
+    </main>
+
+    <!-- Toast Notification -->
+    <div id="toast">
+        <i class="fa-solid fa-terminal mr-2"></i> SYSTEM: CONTACT COPIED
     </div>
 
-    <p>Ideal for:</p>
-    <ul>
-      <li>Artificial General Intelligence (AGI) research labs & platforms</li>
-      <li>Neuro-symbolic AI systems integrating reasoning + learning</li>
-      <li>Decentralized cognitive networks (e.g., agent-based knowledge graphs)</li>
-      <li>Autonomous AI agents operating on blockchain (Bitcoin Runes, AI wallets)</li>
-      <li>Cognitive computing infrastructure (cloud/edge inference engines)</li>
-      <li>Academic-industrial consortiums in human-like machine understanding</li>
-    </ul>
+    <!-- Logic -->
+    <script>
+        function copyEmail() {
+            const email = "joshua369x@gmail.com";
+            navigator.clipboard.writeText(email).then(() => {
+                showToast();
+            }).catch(err => {
+                console.error('Failed to copy: ', err);
+            });
+        }
 
-    <p class="price">Available for acquisition: <strong>$36,900 USD</strong> (6-month installment plan)</p>
+        function showToast() {
+            const toast = document.getElementById("toast");
+            toast.className = "show";
+            setTimeout(function(){ 
+                toast.className = toast.className.replace("show", ""); 
+            }, 3000);
+        }
 
-    <p class="contact">Contact: <a href="mailto:joshua369x@gmail.com">joshua369x@gmail.com</a></p>
-
-    <footer>Where cognition becomes networked, autonomous, and infinite.</footer>
-  </div>
+        // Add subtle parallax to grid
+        document.addEventListener('mousemove', (e) => {
+            const grid = document.querySelector('.grid-overlay');
+            const x = e.clientX / window.innerWidth;
+            const y = e.clientY / window.innerHeight;
+            
+            grid.style.transform = `translate(-${x * 10}px, -${y * 10}px)`;
+        });
+    </script>
 </body>
 </html>
